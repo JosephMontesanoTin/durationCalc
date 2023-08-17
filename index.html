@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html style="font-size: 12px; font-family: Roboto, Arial, sans-serif">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>S T A T S 3</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="header"><a href="https://docs.google.com/document/d/1OMH3WmWtoGA0EFDLbxj93IcvZcXuLK5eJNe53B1O2Jc/edit?usp=sharing">FAQ</a></div>
+    <div class="all-holder">
+      <div class="center input-holder">
+        <div class="all-options-holder">
+          <form class="form-holder">
+            <br />
+            <div class="input-label">Required Information<span class="options-toggle">Advanced Options</span></div>
+            <div class="input-cat">
+              <div class="options-holder2">
+                <div class="option2">Days</div>
+                <div class="option2">2 Weeks</div>
+              </div>
+              <div class="inputs">
+                <label for="baseCVR" title="This is the standard conversion rate for the metric you are looking at on the unaltered page.  A higher baseline conversion makes changes easier to detect."
+                  >Baseline Conversion Rate:</label
+                >
+                <input type="text" id="baseCVR" name="baseCVR" value="50" />
+              </div>
+
+              <div class="inputs days">
+                <label
+                  for="visitors"
+                  title="This is the average visitors per day total that hit the page or pages you are trying to view.  This is total, so do not cut this number in half or in thirds based on number of variations."
+                  >Average Visitors Per Day:</label
+                >
+
+                <input type="text" id="visitors" name="visitors" value="500" />
+              </div>
+
+              <div class="inputs">
+                <label for="variations" title="The number of variations you are testing.  Do not include the control here, so if you only have 1 tested Variation, you put 1 here."
+                  >Number of Variations</label
+                >
+                <input type="text" id="variations" name="variations" value="1" />
+              </div>
+
+              <div class="inputs">
+                <label
+                  for="mde"
+                  class="mde-label"
+                  title="MDE or Minimum Detectable effect is what percent of an uplift you want to be able to detect.  The percent uplift is automatically calculated and placed next to the label when you update this field.  If the effect is greater than your minimum detectable effect it will happen sooner, if it is under you may miss it.  This is a percent of your baseline conversion, so a 25% MDE of a 20% baseline conversion would equate to a variation conversion increase of 5% (25% of 20 is 5)."
+                  >Expected Conversion Rate increase:</label
+                >
+                <input type="text" id="mde" name="mde" value="2.5" />
+              </div>
+            </div>
+            <div class="input-cat hide">
+              <div class="input-label">User Requests</div>
+              <label
+                for="days"
+                title="This will tell you what kind of lift you can detect with your given parameters.  So for example if you get 1000 visitors to your funnel a day that has a baseline conversion of 50%, and can wait 21 days, you will detect any lift that is above 2.37 MDE, or a 1.37% lift."
+                >How long would you like to collect data? (Days)</label
+              ><br />
+              <input type="text" id="days" name="days" value="21" /><br /><br />
+              <!-- <label
+                for="mde"
+                class="mde-label"
+                title="MDE or Minimum Detectable effect is what percent of an uplift you want to be able to detect.  The percent uplift is automatically calculated and placed next to the label when you update this field.  If the effect is greater than your minimum detectable effect it will happen sooner, if it is under you may miss it.  This is a percent of your baseline conversion, so a 25% MDE of a 20% baseline conversion would equate to a variation conversion increase of 5% (25% of 20 is 5)."
+                >Uplift</label
+              ><br />
+              <input type="text" id="mde" name="mde" value="5" /><br /><br /> -->
+            </div>
+
+            <!-- <div class="dropdown-holder hide">
+              <label
+                for="sig-level"
+                title="The level of statistical significance you would like to achieve.  .05 is industry standard and in most research settings.  Lower is more accurate but takes more time to achieve."
+                >Choose a signifigance level:</label
+              >
+              <select name="sig-level" id="sig-level">
+                <option value="2.58">.01</option>
+                <option value="1.96" selected>.05</option>
+                <option value="1.64">.10</option>
+              </select>
+              <div></div>
+              <label
+                for="power-level"
+                title="The level of statistical power, the higher the number, the more likely it is your results are accurate.  80% is industry standard.  Higher power provides more reliable results but takes more time to achieve."
+                >Choose a power level:</label
+              >
+              <select name="power-level" id="power-level">
+                <option value=".84">80%</option>
+                <option value="1.28">90%</option>
+                <option value="1.64">95%</option>
+              </select>
+            </div> -->
+          </form>
+        </div>
+        <button id="calcButton">Calculate Time to Test</button>
+      </div>
+      <div class="day-answer">It will take 3 days</div>
+      <div class="resultsHolder2">
+        <div>
+          <canvas id="myChart" style="width: 730px; max-width: 730px"></canvas>
+          <div class="graph-label">Days into Test</div>
+        </div>
+        <div class="week-info result-paragraph">
+          <div class="week-title">Smallest Detectable Uplift at X weeks</div>
+          <div class="options-holder">
+            <div class="option">Conversion Rate increase</div>
+            <div class="option">Improvement percentage</div>
+          </div>
+        </div>
+      </div>
+      <div class="resultsHolder hide">
+        <h2>Results</h2>
+        <div class="week-info result-paragraph">
+          <div>Smallest Detectable Uplift at X weeks</div>
+        </div>
+        <div class="paragraph2 result-paragraph">With the above settings at 14 days you can detect any MDE over 9.47%, a 1.89% uplift.</div>
+        <div class="paragraph1 result-paragraph">
+          To detect a 5% MDE or (2.5% uplift) of a 20% base CVR you will need 6257 visitors per variation. At the current traffic level that will take 13 days.
+        </div>
+      </div>
+      <div class="advanced-options-holder invisible">
+        <div class="advanced-title">Advanced Options</div>
+
+        <div class="advanced-options">
+          <label
+            for="sig-level"
+            title="The level of statistical significance you would like to achieve.  .05 is industry standard and in most research settings.  Lower is more accurate but takes more time to achieve."
+            >Choose a signifigance level:</label
+          >
+          <select name="sig-level" id="sig-level">
+            <option value="2.58">.01</option>
+            <option value="1.96" selected>.05</option>
+            <option value="1.64">.10</option>
+          </select>
+        </div>
+
+        <div class="advanced-options">
+          <label
+            for="power-level"
+            title="The level of statistical power, the higher the number, the more likely it is your results are accurate.  80% is industry standard.  Higher power provides more reliable results but takes more time to achieve."
+            >Choose a power level:</label
+          >
+          <select name="power-level" id="power-level">
+            <option value=".84">80%</option>
+            <option value="1.28">90%</option>
+            <option value="1.64">95%</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
