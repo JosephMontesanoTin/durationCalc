@@ -20,8 +20,6 @@ function upliftAtXDay(baseCVR, numberOfUsersAtXDay, critScore) {
 
 function newCVRAtXDay(baseCVR, numberOfUsersAtXDay, critScore) {
   let mde = Math.sqrt(baseCVR * (1 - baseCVR)) / (Math.sqrt(numberOfUsersAtXDay / critScore) * baseCVR);
-  console.log(Math.round(baseCVR * mde * 100 * 100) / 100);
-  console.log(baseCVR * 100 + Math.round(baseCVR * mde * 100 * 100) / 100);
   return (baseCVR * 100 + (baseCVR * mde * 100 * 100) / 100).toFixed(2);
 }
 
@@ -39,25 +37,18 @@ function calcSampleSize() {
     document.querySelector(".mde-label").innerText = `Expected Improvement Percentage:`;
     document.querySelector("#mde").value = document.querySelector("#mde").value / baseCVR;
     checkValue = Number(document.querySelector("#mde").value);
-    console.log(Number(checkValue));
-    console.log("if MDE is selected off of uplift");
   } else if (document.querySelector(".mde-label").innerText == `Expected Improvement Percentage:` && !upLiftSelected) {
-    console.log("if mde was already selected, but MDE was updated");
     //if mde was already selected, but MDE was updated
     message = "Improvement percentage";
     graphLabel = "Improvement percentage";
     checkValue = Number(document.querySelector("#mde").value);
   } else if (document.querySelector(".mde-label").innerText != "Expected Conversion Rate increase:") {
-    console.log("if uplift wasn't selected, and needs to update");
     //if uplift wasn't selected, and needs to update
-    console.log("running");
     document.querySelector(".mde-label").innerText = `Expected Conversion Rate increase:`;
     document.querySelector("#mde").value = Number(document.querySelector("#mde").value * baseCVR);
     checkValue = document.querySelector("#mde").value;
-    console.log(checkValue);
   } else {
     //if uplift was already selected
-    console.log("if uplift was already selected");
     checkValue = Number(document.querySelector("#mde").value);
   }
   let numberOfVisitors = document.querySelector("#visitors").value;
@@ -73,14 +64,11 @@ function calcSampleSize() {
   }
 
   numberOfVisitors = numberOfVisitors / (Number(document.querySelector("#variations").value) + 1);
-  //console.log(numberOfVisitors);
 
   let mde = document.querySelector("#mde").value / 100 / baseCVR;
-  let upLift = 0.025 / baseCVR;
 
   let calculationInbetween = Math.sqrt(baseCVR * (1 - baseCVR)) / (baseCVR * mde);
   let sampleSize = document.querySelector("#variations").value * (critScore * Math.pow(calculationInbetween, 2));
-  let totalSize = Math.ceil(sampleSize * (Number(document.querySelector("#variations").value) + 1));
 
   let numberOfUsersAtXDay = Number(document.querySelector("#days").value) * numberOfVisitors;
   let calculatedMDE = Math.sqrt(baseCVR * (1 - baseCVR)) / (Math.sqrt(numberOfUsersAtXDay / critScore) * baseCVR);
@@ -111,7 +99,6 @@ function calcSampleSize() {
     for (i = 1; i < weeksOfTest; i++) {
       let numberOfUsersatXWeek = i * 7 * numberOfVisitors;
       let weeklyUpflit = upliftAtXDay(baseCVR, numberOfUsersatXWeek, critScore);
-      //document.querySelector(`.week-${i}-results`).innerText = `${upliftAtXDay(baseCVR, numberOfUsersatXWeek, critScore)}%`;
       document.querySelector(`.week-${i}-results`).outerHTML = `<span class="week-results ${weeklyUpflit <= checkValue ? "green-text" : "red-text"} week-${i}-results">${weeklyUpflit}%</span>`;
       document.querySelector(`.newCVR-${i}`).innerText = ` or a new CVR of ${newCVRAtXDay(baseCVR, numberOfUsersatXWeek, critScore)}`;
     }
@@ -187,30 +174,12 @@ document.addEventListener("keypress", (event) => {
   }
 });
 
-// document.querySelector("#mde").addEventListener("change", (event) => {
-//   document.querySelector(".mde-label").innerText = `Expected MDE: (${
-//     Math.round((((document.querySelector("#baseCVR").value / 100) * document.querySelector("#mde").value) / 100) * 100 * 100) / 100
-//   }% lift increase)`;
-// });
-
-// document.querySelector("#baseCVR").addEventListener("change", (event) => {
-//   document.querySelector(".mde-label").innerText = `Expected MDE: (${
-//     Math.round((((document.querySelector("#baseCVR").value / 100) * document.querySelector("#mde").value) / 100) * 100 * 100) / 100
-//   }% lift increase)`;
-// });
-
 function mdeToggle(e) {
   if (e.target.innerText == "Conversion Rate increase") {
-    //console.log("Uplift selected");
-    //checkValue = 2.5;
     upLiftSelected = true;
   } else {
-    //console.log("MDE selected");
-    //checkValue = 5;
     upLiftSelected = false;
   }
-  console.log(upLiftSelected);
-  console.log(checkValue);
   calcSampleSize();
 }
 
@@ -220,13 +189,11 @@ document.querySelectorAll(".option").forEach((element) => {
 
 function dayToggle(e) {
   if (e.target.innerText == "Days") {
-    //console.log("Days Selected");
     if (!daySelected) {
       document.querySelector("#visitors").value = Math.round(document.querySelector("#visitors").value / 14);
     }
     daySelected = true;
   } else if (e.target.innerText == "2 Weeks") {
-    //console.log("Months Selected");
     if (daySelected) {
       document.querySelector("#visitors").value = Math.round(document.querySelector("#visitors").value * 14);
     }
