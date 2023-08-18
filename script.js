@@ -233,6 +233,7 @@ function visitorCalculation() {
   console.log(document.querySelector("#total-visitors").value / document.querySelector("#days-run").value);
   document.querySelector("#visitors").value = Math.round(document.querySelector("#total-visitors").value / document.querySelector("#days-run").value);
   modal.style.display = "none";
+  calcSampleSize();
 }
 
 document.querySelector("#visitorCalc").addEventListener("click", visitorCalculation);
