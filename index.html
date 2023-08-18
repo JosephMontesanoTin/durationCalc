@@ -9,12 +9,32 @@
 
   <body>
     <div class="header"><a href="https://docs.google.com/document/d/1OMH3WmWtoGA0EFDLbxj93IcvZcXuLK5eJNe53B1O2Jc/edit?usp=sharing">FAQ</a></div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="close">&times;</div>
+      </br>
+        <div class="inputs">
+          <label for="total-visitors" title="Total visitors to the experience up to this point.">Total Visitors:</label>
+
+          <input type="text" id="total-visitors" name="total-visitors" value="5000" />
+        </div>
+
+        <div class="inputs lower">
+          <label for="days-run" title="The number of days the test has been running.">Number of Days the test has been running</label>
+          <input type="text" id="days-run" name="days-run" value="14" />
+        </div>
+        <button id="visitorCalc">Get Daily Visitors</button>
+      </div>
+    </div>
     <div class="all-holder">
       <div class="center input-holder">
         <div class="all-options-holder">
           <form class="form-holder">
             <br />
-            <div class="input-label">Required Information<span class="options-toggle">Advanced Options</span></div>
+            <div class="input-label">Required Information<span class="options-toggle">Advanced Options</span> <span id="dayCalc">Get Daily Visitors</span></div>
             <div class="input-cat">
               <div class="options-holder2">
                 <div class="option2">Days</div>

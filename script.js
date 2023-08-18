@@ -212,6 +212,31 @@ function toggleAdvancedOptions() {
 
 document.querySelector(".options-toggle").addEventListener("click", toggleAdvancedOptions);
 
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("dayCalc");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+function visitorCalculation() {
+  console.log(document.querySelector("#total-visitors").value / document.querySelector("#days-run").value);
+  document.querySelector("#visitors").value = Math.round(document.querySelector("#total-visitors").value / document.querySelector("#days-run").value);
+  modal.style.display = "none";
+}
+
+document.querySelector("#visitorCalc").addEventListener("click", visitorCalculation);
+
 //Things that could be added as a toggle (or options)
 //number of days on the graph
 //number of weeks to look at
