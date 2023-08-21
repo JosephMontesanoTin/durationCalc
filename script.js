@@ -207,10 +207,11 @@ document.querySelectorAll(".option2").forEach((element) => {
 });
 
 function toggleAdvancedOptions() {
-  document.querySelector(".advanced-options-holder").classList.toggle("invisible");
+  document.querySelector(".advanced-options-holder").classList.toggle("show");
 }
 
 document.querySelector(".options-toggle").addEventListener("click", toggleAdvancedOptions);
+document.querySelector(".advanced-close").addEventListener("click", toggleAdvancedOptions);
 
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("dayCalc");

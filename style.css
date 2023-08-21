@@ -195,7 +195,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 18px;
   padding-top: 8px;
   border-top: 1px dashed gray;
 }
@@ -290,6 +290,7 @@ body {
   background-color: #fefefe;
   margin: auto;
   padding: 40px;
+  padding-top: 0px;
   border: 1px solid #888;
   width: 40%;
   font-size: 18px;
@@ -298,9 +299,11 @@ body {
 /* The Close Button */
 .close {
   color: #aaaaaa;
-  position: absolute;
   font-size: 28px;
   font-weight: bold;
+  right: -530px;
+  position: relative;
+  top: 15px;
 }
 
 .close:hover,
@@ -324,4 +327,13 @@ body {
 
 .lower {
   margin-top: 12px;
+}
+
+.show {
+  display: block;
+}
+
+.advanced-close {
+  right: -530px;
+  position: relative;
 }
