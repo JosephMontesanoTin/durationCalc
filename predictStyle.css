@@ -15,6 +15,7 @@
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 10px;
+  background-color: white;
 }
 
 .result-paragraph {
@@ -39,6 +40,7 @@
   width: 100%;
   align-items: center;
   display: flex;
+  flex-direction: column;
   gap: 45px;
 }
 
@@ -59,10 +61,9 @@
 }
 .resultsHolder2 {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 40px;
   font-size: 24px;
-  margin-top: 80px;
 }
 
 .mde-label {
@@ -72,17 +73,35 @@
 .all-holder {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 50px;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 50px;
 }
 
 #calcButton {
-  width: 500px;
+  /* width: 500px;
   font-size: 30px;
   font-weight: bold;
-  background-color: #61dd61;
+  background-color: #61dd61; */
   cursor: pointer;
+
+  border-width: 0px !important;
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  letter-spacing: 1.5px;
+  font-size: 18px;
+  font-family: "Poppins", Helvetica, Arial, Lucida, sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  padding: 20px;
+  line-height: 1.7em !important;
+  color: white;
+  /* background-image: linear-gradient(90deg, #4178cf 0%, #6600cc 100%); */
+  background-color: rgba(66, 66, 66, 1);
+}
+
+#calcButton {
+  transition: color 300ms ease 0ms, background-color 300ms ease 0ms, border-radius 300ms ease 0ms;
 }
 
 .resultsHolder > h2 {
@@ -188,6 +207,7 @@ body {
 
 .all-options-holder {
   display: flex;
+  margin-top: 100px;
 }
 
 .advanced-options {
@@ -230,17 +250,29 @@ body {
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
+  display: none;
+}
+
+.sub-result {
+  font-size: 18px;
+  margin-top: 10px;
 }
 
 #dayCalc {
   font-size: 12px;
   position: relative;
-  left: 150px;
   top: -40px;
   border: 1px solid black;
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
+  color: white;
+  /* background-image: linear-gradient(90deg, #4178cf 0%, #6600cc 100%); */
+  background-color: rgba(66, 66, 66, 1);
+}
+
+.options-holder2 {
+  display: none;
 }
 
 .invisible {
@@ -249,17 +281,17 @@ body {
 
 .day-answer {
   margin-top: 45px;
-  font-size: 36px;
+  font-size: 66px;
   border-bottom: 1px dashed gray;
   border-top: 1px dashed gray;
   font-weight: 550;
   text-align: center;
-  filter: drop-shadow(39px 41px 46px #000);
+  /* filter: drop-shadow(39px 41px 46px #000); */
 }
 
 .underline {
   font-style: italic;
-  /* color: #461abe; */
+  color: #461abe;
 }
 
 .header {
@@ -288,7 +320,7 @@ body {
 /* Modal Content */
 .modal-content {
   background-color: #fefefe;
-  margin: auto;
+  margin-left: 10vw;
   padding: 40px;
   padding-top: 0px;
   border: 1px solid #888;
@@ -323,6 +355,10 @@ body {
   font-weight: bold;
   background-color: #61dd61;
   cursor: pointer;
+  color: white;
+  border-radius: 10px;
+  /* background-image: linear-gradient(90deg, #4178cf 0%, #6600cc 100%); */
+  background-color: rgba(66, 66, 66, 1);
 }
 
 .lower {
@@ -338,19 +374,74 @@ body {
   position: relative;
 }
 
+body {
+  /* background-image: linear-gradient(80deg, #3173f7 0%, #4722a5 50%) !important; */
+}
+
 .gold {
-  color: gold;
+  color: #4722a5;
 }
 .green {
   color: green;
 }
 .yellow {
-  color: yellow;
+  color: rgb(61, 124, 61);
 }
 .red {
-  color: red;
+  color: rgb(79, 122, 79);
 }
 .gray {
   color: gray;
 }
 
+.rating-score {
+  margin-top: 10px;
+  font-size: 26px;
+}
+
+.tin-header {
+  background-position: center center;
+  background-image: url(tinHeader.png);
+  background-size: cover;
+  transform: translate3d(0px, 0px, 0px);
+  display: table-cell;
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 290px;
+}
+
+.tin-header-img {
+  background-position: center center;
+  background-size: cover;
+  transform: translate3d(0px, 0px, 0px);
+  display: table-cell;
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 290px;
+}
+
+.tin-header-info {
+  margin-top: 290px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+  color: white !important;
+  background-color: rgba(66, 66, 66, 1);
+  align-items: center;
+  height: 80px;
+}
+
+.tin-header-info > div > a {
+  color: white !important;
+}
+body {
+  margin: 0;
+}

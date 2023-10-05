@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Duration Calc</title>
-    <link href="predictStyle.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
-   
+    <div class="header"><a href="https://docs.google.com/document/d/1OMH3WmWtoGA0EFDLbxj93IcvZcXuLK5eJNe53B1O2Jc/edit?usp=sharing">FAQ</a>       <a href="index.html">Predictive Mode</a></div>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -23,14 +23,12 @@
         </div>
 
         <div class="inputs lower">
-          <label for="days-run" title="The number of days the test has been running.">Number of Days to get the above traffic</label>
+          <label for="days-run" title="The number of days the test has been running.">Number of Days the test has been running</label>
           <input type="text" id="days-run" name="days-run" value="14" />
         </div>
         <button id="visitorCalc">Get Daily Visitors</button>
       </div>
     </div>
-    <div class="tin-header"></div>
-    <div class="tin-header-info"><h2>Duration Score</h2> <div><a href="https://docs.google.com/document/d/1OMH3WmWtoGA0EFDLbxj93IcvZcXuLK5eJNe53B1O2Jc/edit?usp=sharing">FAQ</a>       <a href="index2.html">Calculator Mode</a></div></div>
     <div class="all-holder">
       <div class="center input-holder">
         <div class="all-options-holder">
@@ -66,6 +64,15 @@
                 <input type="text" id="variations" name="variations" value="1" />
               </div>
 
+              <div class="inputs">
+                <label
+                  for="mde"
+                  class="mde-label"
+                  title="MDE or Minimum Detectable effect is what percent of an uplift you want to be able to detect.  The percent uplift is automatically calculated and placed next to the label when you update this field.  If the effect is greater than your minimum detectable effect it will happen sooner, if it is under you may miss it.  This is a percent of your baseline conversion, so a 25% MDE of a 20% baseline conversion would equate to a variation conversion increase of 5% (25% of 20 is 5)."
+                  >Expected Conversion Rate increase:</label
+                >
+                <input type="text" id="mde" name="mde" value="2.5" />
+              </div>
             </div>
             <div class="input-cat hide">
               <div class="input-label">User Requests</div>
@@ -78,27 +85,16 @@
             </div>
           </form>
         </div>
-        <button id="calcButton">Calculate Duration Score</button>
+        <button id="calcButton">Calculate Time to Test</button>
       </div>
-      
+      <div class="day-answer">It will take 3 days</div>
 
       <div class="resultsHolder2">
-        <div class="day-answer">It will take 3 days</div>
         <div>
           <canvas id="myChart" style="width: 730px; max-width: 730px"></canvas>
           <div class="graph-label">Days into Test</div>
         </div>
-        
-              <div class="inputs invisible">
-                <label
-                  for="mde"
-                  class="mde-label"
-                  title="MDE or Minimum Detectable effect is what percent of an uplift you want to be able to detect.  The percent uplift is automatically calculated and placed next to the label when you update this field.  If the effect is greater than your minimum detectable effect it will happen sooner, if it is under you may miss it.  This is a percent of your baseline conversion, so a 25% MDE of a 20% baseline conversion would equate to a variation conversion increase of 5% (25% of 20 is 5)."
-                  >Expected Conversion Rate increase:</label
-                >
-                <input type="text" id="mde" name="mde" value="2.5" />
-              </div>
-        <div class="week-info result-paragraph invisible">
+        <div class="week-info result-paragraph">
           <div class="week-title">Smallest Detectable Uplift at X weeks</div>
           <div class="options-holder">
             <div class="option">Conversion Rate increase</div>
@@ -149,18 +145,7 @@
         </div>
       </div>
     </div>
-    <<div><
-      <div>
-        <h2>What does the Duration Score mean?</h2>
-        <ul>
-          <li>The Duration score rates a test on how quicly a 5% uplift can be detected between 2-8 weeks.</li>
-          <li>The longer it takes, the lower the scores</li>
-          <li>By setting a standard uplift to look at in a standarized time frame, KPI's can be easily compared.  This allows prioritizing faster wins, for more immediate uplifts.</li>
-        </ul>
-
-      </div>
-    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="predictScript.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
