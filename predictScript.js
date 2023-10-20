@@ -6,7 +6,7 @@ let firstCalc = true;
 //the first time it runs it builds the divs needed for the weeks
 let upLiftSelected = false;
 let daySelected = true;
-let checkValue = Number(document.querySelector("#mde").value);
+let checkValue = 5;
 let dayCount;
 //this value is used as a general number to give users a baseline of where they want to be able to end their test
 //currently its 2.5 for uplift, and 5 for MDE
@@ -46,19 +46,19 @@ function calculateFeasibility(baseCVR, dailyUsers, critScore) {
   console.log(feasScore < 100);
   if (feasScore == 100) {
     feasRating = "gold";
-    feasScoring = "an incredibly strong";
+    feasScoring = "a very fast test";
   } else if (feasScore < 100) {
     feasRating = "green";
-    feasScoring = "a very strong";
+    feasScoring = "a relatively quick test";
     if (feasScore < 75) {
       feasRating = "yellow";
-      feasScoring = "an average";
+      feasScoring = "an average test length";
       if (feasScore < 31) {
         feasRating = "red";
-        feasScoring = "a slightly slower than average";
+        feasScoring = "a slightly slower than average  test";
         if (feasScore == 0) {
           feasRating = "gray";
-          feasScoring = "a much slower than average";
+          feasScoring = "a much slower than average test";
         }
       }
     }
@@ -71,90 +71,19 @@ function calculateFeasibility(baseCVR, dailyUsers, critScore) {
 
   document.querySelector(".day-answer").innerHTML = `Duration Score: <span class="underline ${feasRating}">${Math.round(feasScore)}</span>
   <div class="sub-result">There will be enough traffic to detect a ${assumedUplift * 100}% lift around ${weeksNeeded} weeks.</div>
-  <div class="rating-score">A score of <span class=${feasRating}>${Math.round(feasScore)}</span> means this is <span class=${feasRating}>${feasScoring}</span> KPI.</div>
+  <div class="rating-score">A score of <span class=${feasRating}>${Math.round(feasScore)}</span> means this is <span class=${feasRating}>${feasScoring}</span>.</div>
   `;
 }
 
 function calcSampleSize() {
   let message = "conversion rate increase";
   let graphLabel = "Percent";
-  let critScore = 2 * Math.pow(Number(document.querySelector("#power-level").value) + Number(document.querySelector("#sig-level").value), 2);
+  let critScore = 2 * Math.pow(Number(0.84) + Number(1.96), 2);
   let baseCVR = document.querySelector("#baseCVR").value / 100;
-  let newCVR;
 
-  if (!upLiftSelected && document.querySelector(".mde-label").innerText != `Expected Improvement Percentage:`) {
-    //if MDE is selected off of uplift
-    message = "Uplift";
-    graphLabel = "Uplift";
-    document.querySelector(".mde-label").innerText = `Expected Improvement Percentage:`;
-    document.querySelector("#mde").value = document.querySelector("#mde").value / baseCVR;
-    checkValue = Number(document.querySelector("#mde").value);
-  } else if (document.querySelector(".mde-label").innerText == `Expected Improvement Percentage:` && !upLiftSelected) {
-    //if mde was already selected, but MDE was updated
-    message = "Uplift";
-    graphLabel = "Uplift";
-    checkValue = Number(document.querySelector("#mde").value);
-  } else if (document.querySelector(".mde-label").innerText != "Expected Conversion Rate increase:") {
-    //if uplift wasn't selected, and needs to update
-    document.querySelector(".mde-label").innerText = `Expected Conversion Rate increase:`;
-    document.querySelector("#mde").value = Number(document.querySelector("#mde").value * baseCVR);
-    checkValue = document.querySelector("#mde").value;
-  } else {
-    //if uplift was already selected
-    checkValue = Number(document.querySelector("#mde").value);
-  }
   let numberOfVisitors = document.querySelector("#visitors").value;
-  if (daySelected) {
-    document.querySelector(".days > label").innerText = "Average Visitors Per Day";
-  } else {
-    numberOfVisitors = numberOfVisitors / 14;
-    document.querySelector(".days > label").innerText = "Average Visitors Per 2 Weeks";
-  }
-
-  if (upLiftSelected) {
-    newCVR = "";
-  }
 
   numberOfVisitors = numberOfVisitors / (Number(document.querySelector("#variations").value) + 1);
-
-  let mde = document.querySelector("#mde").value / 100 / baseCVR;
-
-  let calculationInbetween = Math.sqrt(baseCVR * (1 - baseCVR)) / (baseCVR * mde);
-  let sampleSize = document.querySelector("#variations").value * (critScore * Math.pow(calculationInbetween, 2));
-
-  let numberOfUsersAtXDay = Number(document.querySelector("#days").value) * numberOfVisitors;
-  let calculatedMDE = Math.sqrt(baseCVR * (1 - baseCVR)) / (Math.sqrt(numberOfUsersAtXDay / critScore) * baseCVR);
-  document.querySelector(".paragraph1").innerHTML = `To detect a ${Math.round(baseCVR * mde * 100 * 100) / 100}% uplift of a ${
-    baseCVR * 100
-  }% base CVR you will need <span class="high-result">${Math.ceil(sampleSize)} visitors per variation.</span> At the current traffic level that will take <div class="high-result">${Math.ceil(
-    (sampleSize * Number(document.querySelector("#variations").value) + 1) / numberOfVisitors
-  )} days.</div>`;
-
-  document.querySelector(".paragraph2").innerHTML = `With the above settings after ${document.querySelector("#days").value} days you can detect any uplift above <span class="high-result">${
-    Math.round(baseCVR * calculatedMDE * 100 * 100) / 100
-  }% uplift.</span>  Any lift smaller than this may be missed.`;
-
-  let weeksOfTest = 8;
-  if (firstCalc) {
-    for (i = 1; i < weeksOfTest; i++) {
-      let weekDiv = document.createElement("div");
-      let numberOfUsersatXWeek = i * 7 * numberOfVisitors;
-      let weeklyUpflit = upliftAtXDay(baseCVR, numberOfUsersatXWeek, critScore);
-      weekDiv.innerHTML = `<span>Week ${i}: </span><span class="week-results ${
-        weeklyUpflit <= checkValue ? "green-text" : "red-text"
-      } week-${i}-results">${weeklyUpflit}%</span><span class="newCVR-${i}"> or a new CVR of ${newCVRAtXDay(baseCVR, numberOfUsersatXWeek, critScore)}</span>`;
-      weekDiv.classList.add(`week-holder`);
-      document.querySelector(".week-info").append(weekDiv);
-      firstCalc = false;
-    }
-  } else {
-    for (i = 1; i < weeksOfTest; i++) {
-      let numberOfUsersatXWeek = i * 7 * numberOfVisitors;
-      let weeklyUpflit = upliftAtXDay(baseCVR, numberOfUsersatXWeek, critScore);
-      document.querySelector(`.week-${i}-results`).outerHTML = `<span class="week-results ${weeklyUpflit <= checkValue ? "green-text" : "red-text"} week-${i}-results">${weeklyUpflit}%</span>`;
-      document.querySelector(`.newCVR-${i}`).innerText = ` or a new CVR of ${newCVRAtXDay(baseCVR, numberOfUsersatXWeek, critScore)}`;
-    }
-  }
 
   let xValues = [];
   let yValues = [];
@@ -198,7 +127,6 @@ function calcSampleSize() {
       ],
     },
   });
-  document.querySelector(".week-title").innerText = `Trackable ${message} by week`;
   calculateFeasibility(baseCVR, numberOfVisitors, critScore);
 }
 
@@ -250,7 +178,6 @@ function toggleAdvancedOptions() {
 }
 
 document.querySelector(".options-toggle").addEventListener("click", toggleAdvancedOptions);
-document.querySelector(".advanced-close").addEventListener("click", toggleAdvancedOptions);
 
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("dayCalc");
@@ -295,3 +222,5 @@ document.querySelector("#visitorCalc").addEventListener("click", visitorCalculat
 //baseline or  control
 
 //expected improvement percent to change
+
+//test length instead of KPI

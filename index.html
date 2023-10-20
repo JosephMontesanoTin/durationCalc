@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="tin-header"></div>
-    <div class="tin-header-info"><h2>Duration Score</h2> <div><a href="https://docs.google.com/document/d/1OMH3WmWtoGA0EFDLbxj93IcvZcXuLK5eJNe53B1O2Jc/edit?usp=sharing">FAQ</a>       <a href="index2.html">Calculator Mode</a></div></div>
+    <div class="tin-header-info"><h2>Duration Score</h2> <div><a target=”_blank” href="https://docs.google.com/document/d/1eEs_HI7vO2CqOrqLaDVtb-2lxf-uQhOdNFbn0cjxFKA/edit?usp=sharing">FAQ</a>       <a href="index2.html">Duration Calculator</a></div></div>
     <div class="all-holder">
       <div class="center input-holder">
         <div class="all-options-holder">
@@ -88,78 +88,22 @@
           <canvas id="myChart" style="width: 730px; max-width: 730px"></canvas>
           <div class="graph-label">Days into Test</div>
         </div>
-        
-              <div class="inputs invisible">
-                <label
-                  for="mde"
-                  class="mde-label"
-                  title="MDE or Minimum Detectable effect is what percent of an uplift you want to be able to detect.  The percent uplift is automatically calculated and placed next to the label when you update this field.  If the effect is greater than your minimum detectable effect it will happen sooner, if it is under you may miss it.  This is a percent of your baseline conversion, so a 25% MDE of a 20% baseline conversion would equate to a variation conversion increase of 5% (25% of 20 is 5)."
-                  >Expected Conversion Rate increase:</label
-                >
-                <input type="text" id="mde" name="mde" value="2.5" />
-              </div>
-        <div class="week-info result-paragraph invisible">
-          <div class="week-title">Smallest Detectable Uplift at X weeks</div>
-          <div class="options-holder">
-            <div class="option">Conversion Rate increase</div>
-            <div class="option">Improvement percentage</div>
-          </div>
-        </div>
       </div>
-      <div class="resultsHolder hide">
-        <h2>Results</h2>
-        <div class="week-info result-paragraph">
-          <div>Smallest Detectable Uplift at X weeks</div>
-        </div>
-        <div class="paragraph2 result-paragraph">With the above settings at 14 days you can detect any MDE over 9.47%, a 1.89% uplift.</div>
-        <div class="paragraph1 result-paragraph">
-          To detect a 5% MDE or (2.5% uplift) of a 20% base CVR you will need 6257 visitors per variation. At the current traffic level that will take 13 days.
-        </div>
-      </div>
-      <div class="advanced-options-holder modal">
-        <div class="modal-content">
-          <div class="close advanced-close">&times;</div>
-        <div class="advanced-title">Advanced Options</div>
-
-        <div class="advanced-options">
-          <label
-            for="sig-level"
-            title="The level of statistical significance you would like to achieve.  .05 is industry standard and in most research settings.  Lower is more accurate but takes more time to achieve."
-            >Choose a signifigance level:</label
-          >
-          <select name="sig-level" id="sig-level">
-            <option value="2.58">.01</option>
-            <option value="1.96" selected>.05</option>
-            <option value="1.64">.10</option>
-          </select>
-        </div>
-
-        <div class="advanced-options">
-          <label
-            for="power-level"
-            title="The level of statistical power, the higher the number, the more likely it is your results are accurate.  80% is industry standard.  Higher power provides more reliable results but takes more time to achieve."
-            >Choose a power level:</label
-          >
-          <select name="power-level" id="power-level">
-            <option value=".84">80%</option>
-            <option value="1.28">90%</option>
-            <option value="1.64">95%</option>
-          </select>
-        </div>
         </div>
       </div>
     </div>
-    <<div><
-      <div>
-        <h2>What does the Duration Score mean?</h2>
+    <div>
+      <div class="information-holder">
+        <h1>What does Duration Score mean?</h1>
         <ul>
-          <li>The Duration score rates a test on how quicly a 5% uplift can be detected between 2-8 weeks.</li>
-          <li>The longer it takes, the lower the scores</li>
-          <li>By setting a standard uplift to look at in a standarized time frame, KPI's can be easily compared.  This allows prioritizing faster wins, for more immediate uplifts.</li>
+          <li>The Duration score rates a test on how quickly a 5% uplift can be detected between 2-8 weeks.</li>
+          <li>The higher the score, the quicker a test will likely conclude (if it is successful)</li>
+          <li>By setting a standard uplift to look at in a standarized time frame, KPI's can be easily compared.  This allows users to prioritize faster wins, for more immediate uplifts.</li>
         </ul>
 
       </div>
     </div>
+    <footer></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="predictScript.js"></script>
   </body>

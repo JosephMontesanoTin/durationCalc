@@ -100,6 +100,10 @@
   background-color: rgba(66, 66, 66, 1);
 }
 
+footer {
+  height: 40px;
+  background-color: rgba(66, 66, 66, 1);
+}
 #calcButton {
   transition: color 300ms ease 0ms, background-color 300ms ease 0ms, border-radius 300ms ease 0ms;
 }
@@ -444,4 +448,19 @@ body {
 }
 body {
   margin: 0;
+}
+
+.information-holder {
+  margin-top: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+li {
+  font-size: 20px;
+  margin-top: 10px;
+  width: 50vw;
 }
