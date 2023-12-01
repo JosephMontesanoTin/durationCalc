@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Duration Calc</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="timeLeft.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
@@ -29,13 +29,13 @@
       </div>
     </div>
      <div class="tin-header"></div>
-    <div class="tin-header-info"><h2>Duration Calculator</h2> <div><a href="https://docs.google.com/document/d/1OMH3WmWtoGA0EFDLbxj93IcvZcXuLK5eJNe53B1O2Jc/edit?usp=sharing">FAQ</a>       <a href="index.html">Duration Score</a> <a href="timeLeft.html">Test Conclusion Calculator</a> </div></div>
+    <div class="tin-header-info"><h2>Test Conclusion Calculator</h2> <div><a href="https://docs.google.com/document/d/1OMH3WmWtoGA0EFDLbxj93IcvZcXuLK5eJNe53B1O2Jc/edit?usp=sharing">FAQ</a>       <a href="index.html">Duration Score</a> <a href="index2.html">Duration Calculator</a> </div></div>
     <div class="all-holder">
       <div class="center input-holder">
         <div class="all-options-holder">
           <form class="form-holder">
             <br />
-            <div class="input-label">Required Information<span class="options-toggle">Advanced Options</span> <span id="dayCalc">Get Daily Visitors</span></div>
+            <div class="input-label">Required Information<span class="options-toggle">Advanced Options</span></div>
             <div class="input-cat">
               <!-- <div class="options-holder2">
                 <div class="option2">Days</div>
@@ -48,7 +48,7 @@
                 <input type="text" id="baseCVR" name="baseCVR" value="50" />
               </div>
 
-              <div class="inputs days">
+              <!-- <div class="inputs days">
                 <label
                   for="visitors"
                   title="This is the average visitors per day total that hit the page or pages you are trying to view.  This is total, so do not cut this number in half or in thirds based on number of variations."
@@ -56,8 +56,27 @@
                 >
 
                 <input type="text" id="visitors" name="visitors" value="500" />
+              </div> -->
+
+              <div class="inputs">
+                <label
+                  for="days"
+                  class="days-label"
+                  title="Number of days the test has been running"
+                  >Days Running:</label
+                >
+                <input type="text" id="days" name="days" value="20" />
               </div>
 
+              <div class="inputs">
+                <label
+                  for="currentTraffic"
+                  class="traffic-label"
+                  title="Current amount of traffic to the test total.  Include control + plus all variations"
+                  >Total Traffic:</label
+                >
+                <input type="text" id="currentTraffic" name="currentTraffic" value="10000" />
+              </div>
 
               <div class="inputs">
                 <label for="variations" title="The number of variations you are testing.  Do not include the control here, so if you only have 1 tested Variation, you put 1 here."
@@ -71,7 +90,7 @@
                   for="mde"
                   class="mde-label"
                   title="MDE or Minimum Detectable effect is what percent of an uplift you want to be able to detect.  The percent uplift is automatically calculated and placed next to the label when you update this field.  If the effect is greater than your minimum detectable effect it will happen sooner, if it is under you may miss it.  This is a percent of your baseline conversion, so a 25% MDE of a 20% baseline conversion would equate to a variation conversion increase of 5% (25% of 20 is 5)."
-                  >Expected Conversion Rate increase:</label
+                  >Current Conversion Rate increase:</label
                 >
                 <input type="text" id="mde" name="mde" value="2.5" />
               </div>
@@ -117,6 +136,11 @@
           To detect a 5% MDE or (2.5% uplift) of a 20% base CVR you will need 6257 visitors per variation. At the current traffic level that will take 13 days.
         </div>
       </div> -->
+      <div class="p-holder">
+        <p>This calculator determines how much more traffic is required to reach a proper representative sample size.  Since all A/B tests only reach a percentage of your customers, it is important to try and reach enough of them that the test represents most of your customers.</p>
+        <p>It is not mandatory to reach 100% of the customers that this calculator gives.  This tool should be used holistically when combined with statistical results provided from whatever A/B platform you are using.  Most platforms provide one of the following with each KPI, Confidence level, Stat sig, % Chance to beat baseline.  While these are different, the information they provide can be used for our purposes here interchangeably.  Generally speaking, 95% is the minimum to conclude a test.</p>
+        <p>The closer you are to 100% of a full representative sample size the more accurate your results.  Getting to 100% isn’t required, but can provide a lot more confidence in results.  <a href="https://cxl.com/blog/statistical-significance-does-not-equal-validity/">This article</a> is an excellent guideline on when to conclude tests.</p>
+      </div>
       <div class="advanced-options-holder modal">
         <div class="modal-content">
           <div class="close advanced-close">&times;</div>
@@ -152,6 +176,6 @@
     </div>
     <footer></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="script.js"></script>
+    <script src="timeLeft.js"></script>
   </body>
 </html>
