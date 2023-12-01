@@ -31,7 +31,7 @@ function colorGenerator(trafficRequired, currentTraffic, dailyVisitors) {
   let daysRemaining = (trafficRequired - currentTraffic) / dailyVisitors;
   if (daysRemaining < 7) {
     return "gold";
-  } else if (daysRemaining < 14) {
+  } else if (daysRemaining < 21) {
     return "green";
   } else {
     return "red";
